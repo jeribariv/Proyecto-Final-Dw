@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Motos Monfort — estilos generales del panel y del catálogo
+   ========================================================================== */
+:root {
+    --ink: #16222E;
+    --petrol: #0F4C5C;
+    --petrol-2: #0b3a47;
+    --amber: #E3A21A;
+    --amber-2: #c98f10;
+    --steel: #EEF1F4;
+    --line: #d8dee4;
+}
+
+body { font-family: 'Barlow', system-ui, sans-serif; background: var(--steel); color: var(--ink); }
+h1, h2, h3, .navbar-brand, .display-font { font-family: 'Barlow Condensed', sans-serif; letter-spacing: .02em; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+/* ---------- Navegación ---------- */
+.navbar { background: var(--ink); border-bottom: 4px solid var(--amber); }
+.navbar .nav-link { color: #c9d3dc; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: #fff; }
+.navbar .nav-link.active { box-shadow: inset 0 -3px 0 var(--amber); }
+
+/* ---------- Botones ---------- */
+.btn-petrol { background: var(--petrol); color: #fff; border: 0; }
+.btn-petrol:hover { background: var(--petrol-2); color: #fff; }
+.btn-amber { background: var(--amber); color: var(--ink); border: 0; font-weight: 600; }
+.btn-amber:hover { background: var(--amber-2); color: var(--ink); }
+
+/* ---------- Panel / tablas ---------- */
+.panel { background: #fff; border: 1px solid var(--line); border-radius: 6px; }
+.table thead th { background: var(--ink); color: #fff; font-weight: 500; border: 0; }
+.thumb { width: 80px; height: 56px; object-fit: contain; border-radius: 4px; background: #fff; border: 1px solid var(--line); flex-shrink: 0; }
+.vin { font-variant-numeric: tabular-nums; font-size: .9rem; color: #4b5b69; }
+.page-link { color: var(--petrol); }
+.page-item.active .page-link { background: var(--petrol); border-color: var(--petrol); }
+.kpi { border-left: 5px solid var(--amber); }
+.kpi .num { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1; }
+.barra { height: 8px; background: #e3e8ec; border-radius: 4px; overflow: hidden; min-width: 80px; }
+.barra > span { display: block; height: 100%; background: var(--amber); }
+
+.badge-tipo { background: var(--ink); color: #fff; font-weight: 500; letter-spacing: .03em; }
+.preview-foto { width: 160px; aspect-ratio: 3 / 2; object-fit: contain; border-radius: 6px; background: #dfe5ea; border: 1px solid var(--line); }
+
+/* ==========================================================================
+   Catálogo
+   ========================================================================== */
+.hero {
+    position: relative; overflow: hidden; color: #fff;
+    background:
+        radial-gradient(circle at 80% 30%, rgba(227, 162, 26, .18), transparent 45%),
+        linear-gradient(135deg, var(--petrol) 0%, var(--ink) 100%);
+}
+.hero::after {               /* franjas diagonales decorativas */
+    content: ""; position: absolute; inset: auto -10% 0 auto; width: 55%; height: 100%;
+    background: repeating-linear-gradient(-60deg, rgba(255, 255, 255, .035) 0 18px, transparent 18px 46px);
+    pointer-events: none;
+}
+.hero .container { position: relative; z-index: 1; }
+.hero .eyebrow { color: var(--amber); text-transform: uppercase; letter-spacing: .18em; font-weight: 600; font-size: .85rem; }
+.hero h1 { font-size: clamp(2.6rem, 5.5vw, 4.6rem); line-height: .95; font-weight: 700; }
+.hero h1 span { color: var(--amber); }
+.hero .lead { color: #c9d8e0; max-width: 34rem; }
+/* Moto destacada de la portada */
+.destacada { position: relative; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, .3); }
+.destacada img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; padding: 1rem; }
+.destacada-info { position: absolute; left: 0; bottom: 0; background: var(--ink); color: #fff; padding: .7rem 1.1rem; border-top-right-radius: 10px; }
+.hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+.hero-stats .num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.3rem; font-weight: 700; line-height: 1; }
+.hero-stats .lbl { color: #9fb6c2; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; }
+.hero-raya { height: 6px; background: linear-gradient(90deg, var(--amber) 0 30%, var(--ink) 30% 100%); }
+
+/* Categorías */
+.cat-card {
+    display: block; text-decoration: none; color: var(--ink); background: #fff; border: 2px solid transparent;
+    border-radius: 10px; padding: 1rem 1rem .8rem; transition: transform .2s, box-shadow .2s, border-color .2s; height: 100%;
+}
+.cat-card img, .cat-card .sin-foto { width: 100%; height: 120px; object-fit: contain; transition: transform .3s; }
+.cat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(22, 34, 46, .12); color: var(--ink); }
+.cat-card:hover img { transform: scale(1.06); }
+.cat-card.activa { border-color: var(--amber); }
+.cat-card .nombre { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; line-height: 1; }
+.cat-card .cuenta { color: #6b7b88; font-size: .9rem; }
+
+/* Barra de filtros */
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip {
+    border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 999px;
+    padding: .35rem .95rem; text-decoration: none; font-weight: 500; font-size: .95rem; transition: all .15s;
+}
+.chip:hover { border-color: var(--petrol); color: var(--petrol); }
+.chip.activa { background: var(--ink); border-color: var(--ink); color: #fff; }
+.chip .n { opacity: .6; margin-left: .25rem; font-size: .85em; }
+
+/* Tarjetas de moto */
+.moto-card {
+    background: #fff; border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;
+    border: 1px solid var(--line); transition: transform .25s, box-shadow .25s;
+}
+.moto-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(22, 34, 46, .16); }
+.moto-card .foto { position: relative; aspect-ratio: 4 / 3; background: #fff; overflow: hidden; border-bottom: 4px solid var(--amber); }
+.moto-card .foto img { width: 100%; height: 100%; object-fit: contain; padding: 2.5rem .75rem .75rem; transition: transform .5s; }
+.moto-card:hover .foto img { transform: scale(1.08); }
+.moto-card .tag { position: absolute; top: .75rem; left: .75rem; }
+.moto-card .cc {
+    position: absolute; top: .75rem; right: .75rem; background: var(--amber); color: var(--ink);
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; padding: .1rem .6rem; border-radius: 4px;
+}
+.moto-card .de-cliente {
+    position: absolute; bottom: .6rem; left: .75rem; background: var(--petrol); color: #fff;
+    font-size: .75rem; font-weight: 600; padding: .15rem .55rem; border-radius: 3px;
+}
+.moto-card .cuerpo { padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; flex: 1; }
+.moto-card .marca { color: var(--petrol); text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; font-weight: 600; }
+.moto-card .modelo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; line-height: 1.05; margin: .15rem 0 .6rem; }
+.moto-card .precio-wrap { margin-top: auto; display: flex; align-items: end; justify-content: space-between; gap: .5rem; }
+.moto-card .precio { font-family: 'Barlow Condensed', sans-serif; font-size: 1.7rem; font-weight: 700; line-height: 1; }
+.moto-card .precio small { display: block; font-family: 'Barlow', sans-serif; font-size: .75rem; font-weight: 400; color: #6b7b88; }
+
+/* Modal de ficha técnica */
+.ficha .modal-content { border: 0; border-radius: 14px; overflow: hidden; }
+.ficha .ficha-foto { background: #fff; min-height: 300px; display: flex; align-items: center; border-right: 1px solid var(--line); }
+.ficha .ficha-foto img { width: 100%; max-height: 520px; object-fit: contain; padding: 1.5rem; }
+.ficha .marca-ficha { color: var(--petrol); text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; font-weight: 600; }
+.ficha .ficha-modelo { font-size: 2.4rem; font-weight: 700; line-height: 1; }
+.ficha .ficha-precio { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; font-weight: 700; color: var(--petrol); line-height: 1; }
+
+/* Cuando una moto no tiene foto */
+.sin-foto { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #e8edf1; color: #9aa6b1; font-size: 2.5rem; }
+.thumb.sin-foto { width: 80px; height: 56px; font-size: 1.3rem; }
+.preview-foto.sin-foto { width: 160px; height: auto; font-size: 2rem; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 575.98px) {
+    .cat-card { padding: .75rem; }
+    .cat-card img, .cat-card .sin-foto { height: 80px; }
+    .cat-card .nombre { font-size: 1.2rem; }
+}
+
+/* ==========================================================================
+   Pie de página público
+   ========================================================================== */
+.footer-front { background: var(--ink); color: #fff; border-top: 4px solid var(--amber); }
+.footer-front .text-muted-light { color: #8fa3b3; }
+
+/* ==========================================================================
+   Login y registro
+   ========================================================================== */
+.auth { min-height: 100vh; background: var(--ink); }
+.auth .lado {
+    color: #fff;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(227, 162, 26, .2), transparent 45%),
+        linear-gradient(135deg, var(--petrol) 0%, var(--ink) 100%);
+}
+.auth .lado h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: .95; }
+.auth .lado .raya { width: 72px; height: 6px; background: var(--amber); }
+.auth .lado li { margin-bottom: .6rem; color: #d3dee6; }
+.auth .lado li i { color: var(--amber); margin-right: .5rem; }
+.auth .form-wrap { background: #fff; }
+.auth h2 { font-size: 2.2rem; }
+.auth .cuentas-demo { background: var(--steel); border-radius: 8px; font-size: .9rem; }
+
+/* ==========================================================================
+   Zona cliente y bloque "Vende tu moto"
+   ========================================================================== */
+.vende {
+    background: linear-gradient(120deg, var(--amber) 0%, #f0c048 100%); color: var(--ink);
+    border-radius: 14px; padding: 2rem; position: relative; overflow: hidden;
+}
+.vende .icono-fondo { position: absolute; right: 1.5rem; bottom: -2rem; font-size: 9rem; opacity: .15; line-height: 1; }
+.vende h2 { font-size: 2.2rem; line-height: 1; }
+
+.mi-moto { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 100%; }
+.mi-moto .foto { aspect-ratio: 4 / 3; background: #fff; position: relative; border-bottom: 1px solid var(--line); }
+.mi-moto .foto img { width: 100%; height: 100%; object-fit: contain; padding: .75rem; }
+.mi-moto .estado { position: absolute; top: .75rem; right: .75rem; }
+
+.pasos .paso { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 1rem; height: 100%; }
+.pasos .num {
+    width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: var(--amber);
+    display: inline-grid; place-items: center; font-weight: 700; margin-bottom: .5rem;
+}
+.vendedor { background: var(--steel); border-radius: 8px; padding: .75rem 1rem; }
+
+/* Avatar con la inicial del usuario (perfil, usuarios, dashboard) */
+.avatar {
+    width: 38px; height: 38px; border-radius: 50%; display: inline-grid; place-items: center; font-weight: 700;
+    background: var(--petrol); color: #fff; flex-shrink: 0;
+}
+.avatar.admin { background: var(--amber); color: var(--ink); }
+.avatar-lg { width: 64px; height: 64px; font-size: 1.6rem; }
